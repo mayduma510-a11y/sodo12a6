@@ -32,7 +32,6 @@
             flex-direction: column;
         }
 
-        /* Thanh tiêu đề trên cùng */
         .top-header {
             background: var(--card);
             border-bottom: 1px solid var(--border);
@@ -81,7 +80,6 @@
         .btn-danger-soft { background: #fee2e2; color: var(--danger); }
         .btn-danger-soft:hover { background: #fecaca; }
 
-        /* Bố cục 2 cột */
         .app-container {
             display: grid;
             grid-template-columns: 330px 1fr;
@@ -210,7 +208,7 @@
         }
 
         /* =========================================================
-           KHUNG SƠ ĐỒ Y HỆT ẢNH GỐC (Times New Roman, bố cục chuẩn)
+           SƠ ĐỒ LỚP 12A06 ĐÚNG BỐ CỤC ẢNH GỐC
            ========================================================= */
         .sheet-wrapper {
             overflow-x: auto;
@@ -369,7 +367,6 @@
             background: #fee2e2;
         }
 
-        /* Lối đi giữa có dấu ngoặc Tổ 3 - Tổ 2 và Tổ 4 - Tổ 1 giống hệt ảnh */
         .aisle {
             display: flex;
             flex-direction: column;
@@ -422,8 +419,8 @@
             margin-left: 4px;
         }
 
-        /* Hàng dưới cùng: CỬA VÀO (trái) - BẢNG (giữa) - BÀN GIÁO VIÊN (phải) */
-        .bottom-area {
+        /* Trước Tổ 1 & Tổ 4 (phía dưới cùng): CỬA VÀO (trái) - BẢNG (giữa) - BÀN GIÁO VIÊN (phải) */
+        .front-area {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             align-items: center;
@@ -537,7 +534,7 @@
     <header class="top-header">
         <div class="brand">
             <h1>🎲 Sự Lựa Chọn Của Số Phận - Sơ Đồ Lớp 12A06</h1>
-            <p>Bản độc lập  • Kéo thả hoặc bấm 2 ghế để đổi chỗ</p>
+            <p> • Kéo thả hoặc bấm 2 ghế để đổi chỗ</p>
         </div>
         <div class="top-actions">
             <button class="btn-secondary" onclick="clearAllSeats()">🧹 Xóa chỗ (Giữ danh sách)</button>
@@ -547,7 +544,6 @@
     </header>
 
     <div class="app-container">
-        <!-- Cột điều khiển bên trái -->
         <aside class="sidebar">
             <div class="panel">
                 <h2>1. Thông tin lớp & Danh sách</h2>
@@ -615,7 +611,6 @@
             </div>
         </aside>
 
-        <!-- Sơ đồ lớp y chang ảnh gốc -->
         <div class="sheet-wrapper">
             <main class="classroom-sheet">
                 <div class="sheet-header">
@@ -627,13 +622,11 @@
                 </div>
 
                 <div class="seating-area">
-                    <!-- Bên trái: Tổ 3 trên, Tổ 4 dưới -->
                     <div class="wing">
                         <div class="group-block" id="group-3"></div>
                         <div class="group-block" id="group-4"></div>
                     </div>
 
-                    <!-- Lối đi giữa có ký hiệu ngoặc Tổ -->
                     <div class="aisle">
                         <div class="group-indicators">
                             <div class="bracket-left">TỔ 3</div>
@@ -645,15 +638,13 @@
                         </div>
                     </div>
 
-                    <!-- Bên phải: Tổ 2 trên, Tổ 1 dưới -->
                     <div class="wing">
                         <div class="group-block" id="group-2"></div>
                         <div class="group-block" id="group-1"></div>
                     </div>
                 </div>
 
-                <!-- Phía dưới cùng y hệt ảnh: Cửa vào (trái) - Bảng (giữa) - Bàn GV (phải) -->
-                <div class="bottom-area">
+                <div class="front-area">
                     <div class="door-box">
                         <div class="arrow-door">CỬA VÀO</div>
                     </div>
@@ -669,7 +660,6 @@
     </div>
 
     <script>
-        // Dữ liệu gốc chuẩn 100% theo ảnh sơ đồ lớp 12A06
         const DEFAULT_SEATS_12A06 = [
             // TỔ 3 (0 - 11)
             { name: "Diên Khánh", id: "19", role: "" },
@@ -736,7 +726,7 @@
             { name: "An Sơn", id: "36", role: "" }
         ];
 
-        const STORAGE_KEY = "sodo_12a06_exact_v2";
+        const STORAGE_KEY = "sodo_12a06_exact_v3";
 
         function createDefaultState() {
             const students = [];
@@ -949,7 +939,6 @@
         }
 
         function rotateGroups() {
-            // 0..11: Tổ 3, 12..23: Tổ 4, 24..35: Tổ 2, 36..47: Tổ 1
             const g3 = state.seats.slice(0, 12).map(s => ({ student: s.student, disabled: s.disabled }));
             const g4 = state.seats.slice(12, 24).map(s => ({ student: s.student, disabled: s.disabled }));
             const g2 = state.seats.slice(24, 36).map(s => ({ student: s.student, disabled: s.disabled }));
